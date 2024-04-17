@@ -1,0 +1,11 @@
+
+.backGround{
+    background-image: url(../../Assets-TP-Alpine-master/images/configurateur/couleurs/selection/back2.png);
+    background-size: cover;
+    background-position: center;
+   
+
+} 
+.buttonNext{
+    background: linear-gradient(rgb(135, 194, 250),rgb(240, 171, 183));
+}

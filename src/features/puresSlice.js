@@ -27,35 +27,36 @@ import PureNoireStandard1 from '../Assets-TP-Alpine-master/images/configurateur/
 import PureNoireStandard2 from '../Assets-TP-Alpine-master/images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (2).jpg';
 import PureNoireStandard3 from '../Assets-TP-Alpine-master/images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (3).jpg';
 import PureNoireStandard4 from '../Assets-TP-Alpine-master/images/configurateur/modele/pure/modele_pure-couleur_noire-jante_standard (4).jpg';
+
+import JantBlancSerac from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-blanc_jante-serac (2).jpg';
+import JantBlancStandard from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-blanc_jante-standard (2).jpg';
+import JantBleuSerac from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-bleu_jante-serac (3).jpg';
+import JantBleuStandard from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-bleu_jante-standard (3).jpg';
+import JantNoirSerac from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-noir_jante-serac (1).jpg';
+import JantNoirStandard from '../Assets-TP-Alpine-master/images/configurateur/jantes/vues/couleur-noir_jante-standard (1).jpg';
+
+import CuirNoirDinamica1 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_dinamica-1.jpg';
+import CuirNoirDinamica2 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_dinamica-2.jpg';
+import CuirNoirDinamica3 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_dinamica-3.jpg';
+import CuirNoirPerfore1 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_perfore-1.jpg';
+import CuirNoirPerfore2 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_perfore-2.jpg';
+import CuirNoirPerfore3 from '../Assets-TP-Alpine-master/images/configurateur/interieurs/vues/cuir-noir_perfore-3.jpg';
+
+
+
 const initialState = {
-  imagesBlanche: [
-    PureBlancheSerac1,
-    PureBlancheSerac4,
-    PureBlancheSerac2,
-    PureBlancheSerac3,
-    PureBlancheStandard1,
-    PureBlancheStandard4,
-    PureBlancheStandard2,
-    PureBlancheStandard3,],
-  imagesBleu: [
-    PureBlueSerac1,
-    PureBlueSerac4,
-    PureBlueSerac2,
-    PureBlueSerac3,
-    PureBlueStandard1,
-    PureBlueStandard4,
-    PureBlueStandard2,
-    PureBlueStandard3,],
-  imagesNoire: [
-    PureNoireSerac1,
-    PureNoireSerac4,
-    PureNoireSerac2,
-    PureNoireSerac3,
-    PureNoireStandard1,
-    PureNoireStandard4,
-    PureNoireStandard2,
-    PureNoireStandard3,
-  ], // Définissez la propriété images avec un tableau vide comme valeur initiale
+  imagesBlanche: [PureBlancheSerac1, PureBlancheSerac4, PureBlancheSerac2, PureBlancheSerac3, PureBlancheStandard1, PureBlancheStandard4, PureBlancheStandard2, PureBlancheStandard3],
+  imagesBleu: [PureBlueSerac1, PureBlueSerac4, PureBlueSerac2, PureBlueSerac3, PureBlueStandard1, PureBlueStandard4, PureBlueStandard2, PureBlueStandard3],
+  imagesNoire: [PureNoireSerac1,PureNoireSerac4,PureNoireSerac2,PureNoireSerac3,PureNoireStandard1,PureNoireStandard4,PureNoireStandard2,PureNoireStandard3,], // Définissez la propriété images avec un tableau vide comme valeur initiale
+
+
+  jantsBlanc: [JantBlancSerac, JantBlancStandard],
+  jantsBleu: [JantBleuSerac, JantBleuStandard],
+  jantsNoir: [JantNoirSerac, JantNoirStandard],
+
+  CuirNoirDinamica: [CuirNoirDinamica1, CuirNoirDinamica2, CuirNoirDinamica3],
+  CuirNoirPerfore: [CuirNoirPerfore1, CuirNoirPerfore2, CuirNoirPerfore3],
+ 
 };
 export const puresSlice = createSlice({
   name: 'pures',
@@ -64,6 +65,7 @@ export const puresSlice = createSlice({
     setImages: (state, action) => {
       state.images = action.payload;
     },
+    
   },
 });
 

@@ -9,3 +9,38 @@
 .buttonNext{
     background: linear-gradient(rgb(135, 194, 250),rgb(240, 171, 183));
 }
+.addition{
+    background: linear-gradient(rgba(135, 194, 250, 0.171),rgb(240, 171, 183));
+  
+}
+/* Styles pour la liste ul */
+.ma-liste {
+    list-style-type: none; /* Supprime les puces */
+    padding: 10px; /* Supprime le remplissage par défaut */
+    margin: 0; /* Supprime la marge par défaut */
+    
+    
+  }
+  
+  /* Styles pour les éléments li à l'intérieur de la liste ul */
+  .ma-liste li {
+    margin-bottom: 10px; /* Ajoute un espacement entre chaque élément li */
+  }
+  
+  /* Styles pour les éléments span à l'intérieur des éléments li */
+ .ma-liste li span {
+    font-weight: bold; /* Applique une épaisseur de police en gras */
+  }
+  .fixed-container {
+    position: fixed;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Ajustez selon vos besoins */
+  }
+  .containerNext{
+    width: 200px;
+  }
+  .fixed-container{
+    width: 200px;
+  }

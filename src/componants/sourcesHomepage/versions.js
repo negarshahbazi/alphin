@@ -31,6 +31,10 @@ function Versions() {
         <h1 className='text-white p-5'>01.Version</h1>
       </div>
 
+      <div className=''  >
+            <h2 className='mb-5 text-center mt-5 '>Configurateur de modèle Alpine A110 Legend</h2>
+          </div>
+
       <div className='d-flex justify-content-center align-items-center'><img style={{ border:'5px solid black',padding: '10px' }} className='' src={images[currentImageIndex]} href="#" /></div>
       <h1 className='text-primary mt-5'>CONFIGURATEUR OFFICIEL ALPINE</h1>
       <p className='mb-5'>Choisessez le Modèle que vous souhaitez...</p>
@@ -40,7 +44,7 @@ function Versions() {
           <div className="layer">
             <Link to="/Configure/LegendBuild" href="#">
               <p>+ A110 LEGEND</p>
-              <p>Prix: 58 500€ </p>
+              <p>À partir de: 58 500€ </p>
             </Link>
           </div>
           <img className='m-5' src={Legend} alt="" />
@@ -50,7 +54,7 @@ function Versions() {
           <div className="layer">
             <Link to="/Configure/PureBuild" href="#">
               <p>+ A110 PURE</p>
-              <p>Prix: 54 700€ </p>
+              <p>À partir de: 54 700€ </p>
             </Link>
           </div>
           <img className='m-5' src={Pure} alt="" />

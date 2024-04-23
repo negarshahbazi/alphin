@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <>
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-    <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary ">
+    <div className="container-fluid shadow-blue">
       <img src={Logo} className='w-25'/>
     
       <a className="navbar-brand" href="#"></a>
@@ -18,7 +18,7 @@ function Navbar() {
       <div className="collapse navbar-collapse" id="navbarScroll">
         <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style={{ '--bs-scroll-height': '100px' }}>
           <li className="nav-item">
-          <Link to="/" className="nav-link active" aria-current="page">Accueil</Link>
+          <Link to="/" className="nav-link active " aria-current="page">Accueil</Link>
           </li>
       
       

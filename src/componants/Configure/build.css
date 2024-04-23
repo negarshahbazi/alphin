@@ -191,3 +191,6 @@
         transform: translate(1px, -2px) rotate(-1deg);
     }
 }
+.shadow-blue {
+    box-shadow: 0 0 10px rgba(0, 0, 255, 0.945); /* Remplacez rgba(0, 0, 255, 0.5) par la couleur d'ombre bleue de votre choix */
+  }

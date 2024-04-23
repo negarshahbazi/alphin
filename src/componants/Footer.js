@@ -10,9 +10,9 @@ function Footer() {
     return (
         <>
         
-        <a href="#" className='align-items-center justify-content-center d-flex m-5'>retour en haut de page</a>
+        <a href="#" className='align-items-center justify-content-center d-flex m-5 '>retour en haut de page</a>
          
-            <footer className="site-footer">
+            <footer className="site-footer shadow-blue">
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-12 col-md-6">

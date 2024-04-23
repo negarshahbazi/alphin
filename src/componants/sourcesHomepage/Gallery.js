@@ -14,35 +14,35 @@ function Gallery() {
     <div className="container">
       <div className="row m-2">
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image1} className="img-fluid rounded" alt="Gallery 1" />
+          <img src={Image1} className="img-fluid rounded shadow-blue" alt="Gallery 1" />
         </a>
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image2} className="img-fluid rounded" alt="Gallery 2" />
+          <img src={Image2} className="img-fluid rounded shadow-blue" alt="Gallery 2" />
         </a>
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image3} className="img-fluid rounded" alt="Gallery 3" />
+          <img src={Image3} className="img-fluid rounded shadow-blue" alt="Gallery 3" />
         </a>
       </div>
       <div className="row m-2">
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image4} className="img-fluid rounded" alt="Gallery 4" />
+          <img src={Image4} className="img-fluid rounded shadow-blue" alt="Gallery 4" />
         </a>
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image5} className="img-fluid rounded" alt="Gallery 5" />
+          <img src={Image5} className="img-fluid rounded shadow-blue" alt="Gallery 5" />
         </a>
         <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-          <img src={Image6} className="img-fluid rounded" alt="Gallery 6" />
+          <img src={Image6} className="img-fluid rounded shadow-blue" alt="Gallery 6" />
         </a>
         </div>
         <div className="row m-2">
           <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-            <img src={Image7} className="img-fluid rounded" alt="Gallery 6" />
+            <img src={Image7} className="img-fluid rounded shadow-blue" alt="Gallery 6" />
           </a>
           <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-            <img src={Image8} className="img-fluid rounded" alt="Gallery 6" />
+            <img src={Image8} className="img-fluid rounded shadow-blue" alt="Gallery 6" />
           </a>
           <a href="#" data-toggle="lightbox" data-gallery="gallery" className="col-md-4">
-            <img src={Image9} className="img-fluid rounded" alt="Gallery 6" />
+            <img src={Image9} className="img-fluid rounded shadow-blue" alt="Gallery 6" />
           </a>    
       </div>
     </div>

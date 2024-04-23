@@ -29,7 +29,7 @@ function Accueil() {
         </h2>
       </div>
       <Configure />
-      <div className='  text-center bg-primary text-white  colorBackGround '>
+      <div className='  text-center bg-primary text-white  colorBackGround shadow-blue'>
 
      
       <div className='container text-center text-white d-flex flex-column justify-content-between  align-items-center'>
@@ -42,17 +42,17 @@ function Accueil() {
               <p>Un mélange parfait de polyvalence, de luxe et de pure performance. Un esprit de compétition allié à la performance. L'A110 s'inspire de la légendaire Berlinette et les combine avec des caractéristiques de design modernes qui améliorent son aérodynamisme et créent un effet wow immédiat.</p>
             </div>
           </div>
-          <div className='col-md-8'>
+          <div className='col-md-8 '>
           <img src={logo} alt="Alpine A110" className='mb-3'/>
-            <img src={photo} alt="Alpine A110" style={{ width: '600px', height: 'auto' }}/>
+            <img src={photo} alt="Alpine A110 " style={{ width: '600px', height: 'auto' }}/>
           </div>
         </div>
       </div>
       </div>
 
 
-      <div className="video-container">
-        <video autoPlay muted loop className=' roundedd' >
+      <div className="video-container p-5">
+        <video autoPlay muted loop className=' roundedd shadow-blue' >
           <source src={Video} type="video/mp4" />
           {/* Ajoutez des sources supplémentaires ici pour la compatibilité avec différents formats vidéo */}
         </video>

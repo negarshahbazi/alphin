@@ -57,7 +57,6 @@ function LegendBuild() {
   const [prixVisible, setPrixVisible] = useState(false); // Prix personnalisé caché par défaut
   const [arrowIcon, setArrowIcon] = useState(<MdOutlineKeyboardArrowDown />);
   const [currentPrix, setCurrentPrix] = useState(0); // Tableau d'images de jantes actuellement sélectionné
-  const [currentPrixTotal, setCurrentPrixTotal] = useState(58500); // Tableau d'images de jantes actuellement sélectionné
   const [currentPrixJant, setCurrentPrixJant] = useState(0); // Tableau d'images de jantes actuellement sélectionné
   const [CurrentPrixSellerie, setCurrentPrixSellerie] = useState(0); // Tableau d'images de jantes actuellement sélectionné
   const [equipmentsVisible, setEquipmentsVisible] = useState(false); // État de visibilité de la section "sellerie"
@@ -160,7 +159,7 @@ function LegendBuild() {
   // Fonction pour changer prix de color en fonction de la sélection
   const changePrix = (type) => {
     let newPrix = 0;
-    let prixTotal = Base;
+  
 
     switch (type) {
       case 'prixBlanc':
@@ -178,14 +177,14 @@ function LegendBuild() {
     }
 
     setCurrentPrix(newPrix);
-    setCurrentPrixTotal(newPrix + prixTotal)
+  
 
   };
 
   // Fonction pour changer prix de jant en fonction de la sélection
   const changePrixJant = (type) => {
     let newPrixJant = 0;
-    let prixTotal = currentPrixTotal;
+   
 
     switch (type) {
       case 'Legend':
@@ -203,14 +202,14 @@ function LegendBuild() {
     }
 
     setCurrentPrixJant(newPrixJant);
-    setCurrentPrixTotal(newPrixJant + prixTotal)
+   
 
   };
 
   // Fonction pour changer prix de jant en fonction de la sélection
   const changePrixSellerie = (type) => {
     let newPrixSellerie = 0;
-    let prixTotal = currentPrixTotal;
+  
 
     switch (type) {
       case 'Dinamica':
@@ -225,19 +224,18 @@ function LegendBuild() {
     }
 
     setCurrentPrixSellerie(newPrixSellerie);
-    setCurrentPrixTotal(newPrixSellerie + prixTotal)
+   
 
   };
 
   // Fonction pour mettre à jour le prix total des équipements
   const updateTotalPrice = (price) => {
     setTotalEquipmentPrice(totalEquipmentPrice + price);
-    setCurrentPrixTotal(currentPrixTotal+totalEquipmentPrice + price);
   };
   // Fonction pour mettre à jour le prix total des accessories
   const updateTotalPriceAccessories = (price) => {
     setTotalAccessoriesPrice(totalAccessoriesPrice + price);
-    setCurrentPrixTotal(currentPrixTotal+totalEquipmentPrice + price);
+    
   };
   // Fonction pour afficher la section "jant"
   const showJantSection = () => {
@@ -319,7 +317,7 @@ function LegendBuild() {
 
 
       <section className='color backGround'>
-        <div className='bg-dark m-0 '>
+        <div className='bg-dark m-0 shadow-blue'>
           <h1 className='text-white p-5 '>02.Couleur</h1>
         </div>
         <div className=' m-0 p-0'>
@@ -331,7 +329,7 @@ function LegendBuild() {
               <div className="col-md-6 image-container d-flex justify-content-center align-items-center">
                 <div className='d-flex flex-column justify-content-center align-items-center'>
                   <img src={currentImages[currentIndex]} alt={`Image ${currentIndex}`} style={{ width: '100%', height: 'auto', marginLeft: 'auto', marginRight: 'auto', zIndex: -1 }} />
-                  <div className="container  button-container d-flex justify-content-center align-items-center" style={{ width: '20vh' }}>
+                  <div className="container  button-container d-flex justify-content-center align-items-center" style={{ width: '30vh' }}>
                     <button onClick={prevImage} style={{ border: 'none', background: 'none', padding: '0', cursor: 'pointer' }}><IoIosArrowDropleftCircle style={{ width: '50', height: 'auto' }} /></button>
                     <Tb360View style={{ width: '50', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} /> {/* Icone pour l'effet de rotation à 360 degrés */}
                     <button onClick={nextImage} style={{ border: 'none', background: 'none', padding: '0', cursor: 'pointer' }}><IoIosArrowDroprightCircle style={{ width: '50', height: 'auto' }} /></button>
@@ -379,7 +377,7 @@ function LegendBuild() {
                   <li>Équipements:<span className='fs-6'>{totalEquipmentPrice}€</span></li>
                   <li>Accessoires:<span className='fs-6'>{ totalAccessoriesPrice }€</span></li>
                   <hr />
-                  <li>Prix ​​total:<span className='fs-6'><span className='fs-6'></span>{currentPrixTotal} €</span></li>
+                  <li>Prix ​​total:<span className='fs-6'><span className='fs-6'></span>{Base + currentPrix + currentPrixJant + CurrentPrixSellerie + totalEquipmentPrice + totalAccessoriesPrice} €</span></li>
                 </ul>
               </div>
             </div>
@@ -394,7 +392,7 @@ function LegendBuild() {
 
       {jantVisible && (
         <section className='jant backGround'>
-          <div className='bg-dark m-0'>
+          <div className='bg-dark m-0 shadow-blue'>
             <h1 className='text-white p-5'>03.Jants & Roues</h1>
           </div>
           <div className=' m-0 p-0'>
@@ -439,7 +437,7 @@ function LegendBuild() {
 
       {sellerieVisible && (
         <section className='sellerie backGround'>
-          <div className='bg-dark m-0 '>
+          <div className='bg-dark m-0 shadow-blue'>
             <h1 className='text-white p-5'>03.Sellerie</h1>
           </div>
           <div className=' m-0 p-0'>
@@ -453,7 +451,7 @@ function LegendBuild() {
                 <div className="col-md-6 image-container d-flex justify-content-center align-items-center">
                   <div className='d-flex flex-column justify-content-center align-items-center'>
                     <img className='shadowCard' src={currentSellerie[currentIndex]} alt={`Image ${currentIndex}`} style={{ width: '100%', height: 'auto', marginLeft: 'auto', marginRight: 'auto', zIndex: -1, border: '4px solid black', padding: '7px', marginBottom: '20px' }} />
-                    <div className="container  button-container d-flex justify-content-center align-items-center" style={{ width: '20vh' }}>
+                    <div className="container  button-container d-flex justify-content-center align-items-center" style={{ width: '30vh' }}>
                       <button onClick={prevImage} style={{ border: 'none', background: 'none', padding: '0', cursor: 'pointer' }}><IoIosArrowDropleftCircle style={{ width: '50', height: 'auto' }} /></button>
                       <Tb360View style={{ width: '50', height: 'auto', marginLeft: 'auto', marginRight: 'auto' }} /> {/* Icone pour l'effet de rotation à 360 degrés */}
                       <button onClick={nextImage} style={{ border: 'none', background: 'none', padding: '0', cursor: 'pointer' }}><IoIosArrowDroprightCircle style={{ width: '50', height: 'auto' }} /></button>
@@ -487,7 +485,7 @@ function LegendBuild() {
 
       {equipmentsVisible && (
         <section className='sellerie backGround'>
-          <div className='bg-dark m-0 '>
+          <div className='bg-dark m-0 shadow-blue'>
             <h1 className='text-white p-5'>04.Equipments</h1>
           </div>
           <div className='  m-5 p-0'>
@@ -551,7 +549,7 @@ function LegendBuild() {
       )}
       {accessoriesVisible && (
    <section className='sellerie backGround'>
-   <div className='bg-dark m-0 '>
+   <div className='bg-dark m-0 shadow-blue'>
      <h1 className='text-white p-5'>05.Accessoires</h1>
    </div>
    {/* Autres éléments de votre composant */}

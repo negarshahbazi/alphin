@@ -15,14 +15,16 @@ function A110() {
       <div className="carousel-inner">
         <div className="carousel-item active" >
           <img src={Image1} className="d-block " alt="..." style={{ width: '100%', height: 'auto' }} />
-          <div className="carousel-caption d-md-block" style={{  padding: '20px', borderRadius: '10px'}}>
-            <h1 className='textWhite'>Construisez votre propre Alpine</h1>
+          <div className="row  d-md-block d-flex flex-column justify-content-center align-items-center " style={{  borderRadius: '10px'}}>
+            <div className='col-4 carousel-caption  shadow-blue'>
+            <h3 className='textWhite text-primary'>Construisez votre propre Alpine</h3>
             <p>Avec l'intelligence artificielle, la technologie révolutionnaire de capot transparent et la conception intuitive, c'est une toute nouvelle Alpine que vous n'avez jamais vue auparavant. Choisissez entre votre modèle préféré et commencez ci-dessous</p>
-            <Link to="/versions" className='btn btn-primary'>Commencer</Link>
+            <Link to="/versions" className='btn btn-light shadow-blue'>Commencer</Link>
+          </div>
           </div>
         </div>
         <div className="carousel-item">
-          <img src={Image3} className="d-block mx-auto" alt="..." style={{ width: '100%', height: 'auto' }} />
+          <img src={Image3} className="d-block mx-auto " alt="..." style={{ width: '100%', height: 'auto' }} />
         </div>
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

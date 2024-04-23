@@ -6,8 +6,8 @@ import centre from '../../Assets-TP-Alpine-master/images/sources-homepage/design
 
 function Configure() {
   return (
-    <div className="gallery-box-container d-flex justify-content-center align-items-center m-5">
-      <Link to="/versions" href="#" className="gallery-box m-5">
+    <div className="gallery-box-container d-flex justify-content-center align-items-center m-5 ">
+      <Link to="/versions" href="#" className="gallery-box m-5 shadow-blue">
         <span className="gallery-box__img-container">
           <img src={chair} alt="" className="gallery-box__img" />
         </span>
@@ -18,7 +18,7 @@ function Configure() {
         </span>
       </Link>
 
-      <Link to="./Configure/ConfigureCentre" href="#" className="gallery-box m-5">
+      <Link to="./Configure/ConfigureCentre" href="#" className="gallery-box m-5 shadow-blue">
         <span className="gallery-box__img-container">
           <img src={centre} alt="" className="gallery-box__img" />
         </span>

@@ -432,15 +432,65 @@ p {
 .colorBackGround{
   background-color: #004af5b7 !important;
 }
-.carousel-caption{
+.carousel-caption {
   top: 5%;
-  height: 300px;
-  width: 600px;
+  height: auto; /* Hauteur dynamique */
+  width: 50%;
   left: 5%;
-  background-color: rgba(0, 81, 255, 0.726);
-
+  background-color: rgba(0, 0, 0, 0.454);
+  padding: 10px;
+  border-radius: 30px;
 }
-.textWhite{
+.alpine{
+  background-color: rgba(0, 0, 0, 0.454);
+}
+.textWhite {
   color: white;
-  margin-top: 40px;
+  padding: 10px;
+}
+
+/* Media Query pour les petits écrans */
+@media screen and (max-width: 576px) {
+  .carousel-caption {
+    height: auto; /* Hauteur dynamique pour les petits écrans */
+  }
+}
+
+/* Media Query pour les écrans moyens */
+@media screen and (min-width: 576px) and (max-width: 992px) {
+  .carousel-caption {
+    height: 60%; /* Hauteur dynamique pour les écrans moyens */
+  }
+}
+
+/* Media Query pour les grands écrans */
+@media screen and (min-width: 992px) {
+  .carousel-caption {
+    height: 50%; /* Hauteur dynamique pour les grands écrans */
+  }
+}
+/* Media Query pour les grands écrans */
+@media screen and (min-width: 1024px) {
+  .carousel-caption {
+    height: 50%; /* Hauteur dynamique pour les grands écrans */
+  }
+}
+/* Media Query pour les grands écrans */
+@media screen and (min-width: 1440px) {
+  .carousel-caption {
+    height: 35%; /* Hauteur dynamique pour les grands écrans */
+  }
+}
+/* Media Query pour les grands écrans */
+@media screen and (min-width: 1600px) {
+  .carousel-caption {
+    height: 25%; /* Hauteur dynamique pour les grands écrans */
+  }
+}
+
+
+
+
+.shadow-blue {
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.945); /* Remplacez rgba(0, 0, 255, 0.5) par la couleur d'ombre bleue de votre choix */
 }

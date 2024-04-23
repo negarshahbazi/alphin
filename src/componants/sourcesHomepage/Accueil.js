@@ -29,12 +29,12 @@ function Accueil() {
         </h2>
       </div>
       <Configure />
-      <div className='  text-center bg-primary text-white '>
+      <div className='  text-center bg-primary text-white  colorBackGround '>
 
      
-      <div className='container  text-center bg-primary text-white d-flex flex-column justify-content-between  align-items-center'>
+      <div className='container text-center text-white d-flex flex-column justify-content-between  align-items-center'>
 
-        <div className='row mt-5 '>
+        <div className='row mt-5 text-center'>
           <div className='col-md-4'>
             <div className='w-75 d-flex flex-column justify-content-start align-items-center skew-text '>
               <h1 className='text-white'><b>Nouvelle Alpine A 110</b></h1>
@@ -52,7 +52,7 @@ function Accueil() {
 
 
       <div className="video-container">
-        <video autoPlay muted loop className='' >
+        <video autoPlay muted loop className=' roundedd' >
           <source src={Video} type="video/mp4" />
           {/* Ajoutez des sources supplémentaires ici pour la compatibilité avec différents formats vidéo */}
         </video>

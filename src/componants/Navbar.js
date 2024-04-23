@@ -27,15 +27,15 @@ function Navbar() {
             Modéles
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><Link to="/versions" className="dropdown-item" href="#">01.Pure</Link></li>
-              <li><Link to="/versions" className="dropdown-item" href="#">02.Legend</Link></li>
+              <li><Link to="/Configure/PureBuild" className="dropdown-item" href="#">01.Pure</Link></li>
+              <li><Link to="/Configure/LegendBuild" className="dropdown-item" href="#">02.Legend</Link></li>
            
 
            
             </ul>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-link " aria-disabled="true">Contact</Link>
+            <Link to="/versions" className="nav-link " aria-disabled="true">Configurateur</Link>
           </li>
         </ul>
         <a className='text-black' href='#' style={{color: 'yourColor', textDecoration: 'none'}}><CgProfile className='text-primary' style={{fontSize: '32px'}} /> Mon Alpine</a>

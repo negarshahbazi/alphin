@@ -2,6 +2,7 @@ import React from 'react';
 import Image1 from '../../Assets-TP-Alpine-master/images/sources-homepage/A110/Alpine-A110-1.jpg';
 
 import Image3 from '../../Assets-TP-Alpine-master/images/sources-homepage/design/Moteur_desktop.png';
+import { Link } from 'react-router-dom';
 
 function A110() {
   return (
@@ -13,13 +14,16 @@ function A110() {
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active" >
-          <img src={Image1} className="d-block " alt="..." style={{ width: '100%', height: 'auto' }}/>
+          <img src={Image1} className="d-block " alt="..." style={{ width: '100%', height: 'auto' }} />
+          <div className="carousel-caption d-md-block" style={{  padding: '20px', borderRadius: '10px'}}>
+            <h1 className='textWhite'>Construisez votre propre Alpine</h1>
+            <p>Avec l'intelligence artificielle, la technologie révolutionnaire de capot transparent et la conception intuitive, c'est une toute nouvelle Alpine que vous n'avez jamais vue auparavant. Choisissez entre votre modèle préféré et commencez ci-dessous</p>
+            <Link to="/versions" className='btn btn-primary'>Commencer</Link>
+          </div>
         </div>
         <div className="carousel-item">
-          <img src={Image3} className="d-block mx-auto" alt="..." style={{ width: '100%', height: 'auto' }}/>
+          <img src={Image3} className="d-block mx-auto" alt="..." style={{ width: '100%', height: 'auto' }} />
         </div>
-    
- 
       </div>
       <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -30,7 +34,7 @@ function A110() {
         <span className="visually-hidden">Next</span>
       </button>
     </div>
-    
+
   );
 }
 

@@ -35,7 +35,7 @@ function Versions() {
             <h2 className='mb-5 text-center mt-5 '>Configurateur de modèle Alpine A110 Legend</h2>
           </div>
 
-      <div className='d-flex justify-content-center align-items-center'><img style={{ border:'5px solid black',padding: '10px' }} className='' src={images[currentImageIndex]} href="#" /></div>
+      <div className='d-flex justify-content-center align-items-center'><img style={{padding: '10px' }} className='rounded' src={images[currentImageIndex]} href="#" /></div>
       <h1 className='text-primary mt-5'>CONFIGURATEUR OFFICIEL ALPINE</h1>
       <p className='mb-5'>Choisessez le Modèle que vous souhaitez...</p>
 

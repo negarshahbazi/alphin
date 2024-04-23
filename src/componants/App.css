@@ -8,12 +8,44 @@ body{
   place-items: center; /* Align both horizontally and vertically */
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjust as needed */
+  height: auto; /* Adjust as needed */
+  background-color: #004af5b7;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  
 }
-
+.borderVideo{
+  border: 3px solid white;
+  background-color: #f7f8fa;
+  padding: 30px;
+  margin: 30px;
+}
+.roundedd{
+  --g: 4px;     /* the gap */
+  --b: 5px;    /* border thickness*/
+  --c: #f2f6f7; /* the color */
+  
+  
+  padding: calc(var(--g) + var(--b));
+  --_c: #0000 0 25%, var(--c) 0 50%;
+  --_g1: repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+  --_g2: repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+  background:
+    var(--_g1) var(--_p, 25%) 0   ,var(--_g2) 0    var(--_p,125%),
+    var(--_g1) var(--_p,125%) 100%,var(--_g2) 100% var(--_p, 25%);
+  background-size: 200% var(--b),var(--b) 200%;
+  cursor: pointer;
+  filter: grayscale(50%);
+  transition: .3s;
+}
+.roundedd:hover{
+  --_p: 75%;
+  filter: grayscale(0%);
+}
 .video-container video {
   max-width: 60%;
   max-height: 100%;
+  padding: 30px;
 }
 
 
@@ -374,4 +406,41 @@ p {
 
 .logoFooter:hover {
   width: 300px; /* Changement de largeur au survol */
+}
+.rounded{
+  --g: 4px;     /* the gap */
+  --b: 5px;    /* border thickness*/
+  --c: #0073f5; /* the color */
+  
+  
+  padding: calc(var(--g) + var(--b));
+  --_c: #0000 0 25%, var(--c) 0 50%;
+  --_g1: repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+  --_g2: repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+  background:
+    var(--_g1) var(--_p, 25%) 0   ,var(--_g2) 0    var(--_p,125%),
+    var(--_g1) var(--_p,125%) 100%,var(--_g2) 100% var(--_p, 25%);
+  background-size: 200% var(--b),var(--b) 200%;
+  cursor: pointer;
+  filter: grayscale(50%);
+  transition: .3s;
+}
+.rounded:hover{
+  --_p: 75%;
+  filter: grayscale(0%);
+}
+.colorBackGround{
+  background-color: #004af5b7 !important;
+}
+.carousel-caption{
+  top: 5%;
+  height: 300px;
+  width: 600px;
+  left: 5%;
+  background-color: rgba(0, 81, 255, 0.726);
+
+}
+.textWhite{
+  color: white;
+  margin-top: 40px;
 }

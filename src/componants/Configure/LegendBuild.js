@@ -159,7 +159,7 @@ function LegendBuild() {
   // Fonction pour changer prix de color en fonction de la sélection
   const changePrix = (type) => {
     let newPrix = 0;
-  
+
 
     switch (type) {
       case 'prixBlanc':
@@ -177,14 +177,14 @@ function LegendBuild() {
     }
 
     setCurrentPrix(newPrix);
-  
+
 
   };
 
   // Fonction pour changer prix de jant en fonction de la sélection
   const changePrixJant = (type) => {
     let newPrixJant = 0;
-   
+
 
     switch (type) {
       case 'Legend':
@@ -202,14 +202,14 @@ function LegendBuild() {
     }
 
     setCurrentPrixJant(newPrixJant);
-   
+
 
   };
 
   // Fonction pour changer prix de jant en fonction de la sélection
   const changePrixSellerie = (type) => {
     let newPrixSellerie = 0;
-  
+
 
     switch (type) {
       case 'Dinamica':
@@ -224,18 +224,42 @@ function LegendBuild() {
     }
 
     setCurrentPrixSellerie(newPrixSellerie);
-   
+
 
   };
 
   // Fonction pour mettre à jour le prix total des équipements
-  const updateTotalPrice = (price) => {
-    setTotalEquipmentPrice(totalEquipmentPrice + price);
+  const updateTotalPrice = (price, isAdding, category, index) => {
+    setTotalEquipmentPrice(prevTotalPrice => {
+      if (isAdding) {
+        setAddedButtonsByCategory(prevState => ({
+          ...prevState,
+          [category]: {
+            ...(prevState[category] || {}),
+            [index]: true
+          }
+        }));
+        return prevTotalPrice + price; // Ajoute le prix au prix total
+      } else {
+        setAddedButtonsByCategory(prevState => {
+          const newState = { ...prevState };
+          delete newState[category][index];
+          return newState;
+        });
+        return prevTotalPrice - price; // Soustrait le prix du prix total
+      }
+    });
   };
-  // Fonction pour mettre à jour le prix total des accessories
-  const updateTotalPriceAccessories = (price) => {
-    setTotalAccessoriesPrice(totalAccessoriesPrice + price);
-    
+
+  // Fonction pour mettre à jour le prix total des accessoires
+  const updateTotalPriceAccessories = (price, isAdding) => {
+    setTotalAccessoriesPrice(prevTotalPrice => {
+      if (isAdding) {
+        return prevTotalPrice + price; // Ajoute le prix au prix total
+      } else {
+        return prevTotalPrice - price; // Soustrait le prix du prix total
+      }
+    });
   };
   // Fonction pour afficher la section "jant"
   const showJantSection = () => {
@@ -281,37 +305,28 @@ function LegendBuild() {
     }
     accessoriesByCategory[accessory.category].push(accessory);
   });
-    // État pour suivre la catégorie actuellement ouverte
-    const [selectedCategory, setSelectedCategory] = useState(null);
+  // État pour suivre la catégorie actuellement ouverte
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-    // Fonction pour gérer le clic sur une catégorie
-    const handleCategoryClick = (category) => {
-      setSelectedCategory(selectedCategory === category ? null : category);
-    };
-
-
-    // État pour suivre si chaque bouton a été ajouté ou non "accessories"
-    const [addedButtons, setAddedButtons] = useState(new Array(accessoriesByCategory.length).fill(false));
-
-    // Fonction pour mettre à jour l'état du bouton lorsqu'il est cliqué
-    const handleAddClick = (index) => {
-      const newAddedButtons = [...addedButtons];
-      newAddedButtons[index] = !newAddedButtons[index]; // Inverser la valeur du bouton
-      setAddedButtons(newAddedButtons);
-    };
+  // Fonction pour gérer le clic sur une catégorie
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(selectedCategory === category ? null : category);
+  };
 
 
-    const [addedButtonsByCategory, setAddedButtonsByCategory] = useState({});
+  // État pour suivre si chaque bouton a été ajouté ou non "accessories"
+  const [addedButtons, setAddedButtons] = useState(new Array(accessoriesByCategory.length).fill(false));
 
-    // Fonction pour mettre à jour l'état du bouton lorsqu'il est cliqué
-    const handleAddClicke = (category, index) => {
-      setAddedButtonsByCategory(prevState => {
-        const newAddedButtons = { ...prevState };
-        newAddedButtons[category] = { ...(newAddedButtons[category] || {}) };
-        newAddedButtons[category][index] = !newAddedButtons[category][index]; // Inverser la valeur du bouton
-        return newAddedButtons;
-      });
- };
+  // Fonction pour mettre à jour l'état du bouton lorsqu'il est cliqué
+  const handleAddClick = (index) => {
+    const newAddedButtons = [...addedButtons];
+    newAddedButtons[index] = !newAddedButtons[index]; // Inverser la valeur du bouton
+    setAddedButtons(newAddedButtons);
+  };
+
+
+  const [addedButtonsByCategory, setAddedButtonsByCategory] = useState({});
+
   return (
     <>
 
@@ -375,7 +390,7 @@ function LegendBuild() {
                   <li>Jantes:<span className='fs-6'>{currentPrixJant}€</span></li>
                   <li>Intérieure:<span className='fs-6'>{CurrentPrixSellerie}€</span></li>
                   <li>Équipements:<span className='fs-6'>{totalEquipmentPrice}€</span></li>
-                  <li>Accessoires:<span className='fs-6'>{ totalAccessoriesPrice }€</span></li>
+                  <li>Accessoires:<span className='fs-6'>{totalAccessoriesPrice}€</span></li>
                   <hr />
                   <li>Prix ​​total:<span className='fs-6'><span className='fs-6'></span>{Base + currentPrix + currentPrixJant + CurrentPrixSellerie + totalEquipmentPrice + totalAccessoriesPrice} €</span></li>
                 </ul>
@@ -423,7 +438,7 @@ function LegendBuild() {
                 </div>
                 <div className="col-md-6 image-container d-flex justify-content-center align-items-center">
                   <div className='d-flex flex-column justify-content-center align-items-center'>
-                    <img  src={currentJants[currentIndex]} alt={`Image ${currentIndex}`} style={{ width: '100%', height: 'auto', marginLeft: 'auto', marginRight: 'auto', zIndex: -1 }} />
+                    <img src={currentJants[currentIndex]} alt={`Image ${currentIndex}`} style={{ width: '100%', height: 'auto', marginLeft: 'auto', marginRight: 'auto', zIndex: -1 }} />
                   </div>
                 </div>
               </div>
@@ -496,7 +511,7 @@ function LegendBuild() {
                 {/* Utilisez map() pour afficher chaque image */}
                 {images.map((image, imageIndex) => (
                   // Utilisez imageIndex au lieu de index
-                  <div key={imageIndex} className='col-md-6 mb-3 shadowCard' style={{  padding: '10px' }}>
+                  <div key={imageIndex} className='col-md-6 mb-3 shadowCard' style={{ padding: '10px' }}>
                     <div className='row d-flex justify-content-between align-items-center'>
                       <div className='col-3'>
                         <img className='shadowCard' style={{ border: '2px solid black', width: '200px', padding: '10px', marginBottom: '5px' }} src={image} alt={`Image ${imageIndex + 1}`} />
@@ -518,18 +533,15 @@ function LegendBuild() {
                                     <p className="price">Price: <b>{equipment.price}€</b></p>
                                   </div>
                                 </div>
-                                <button 
-                                onClick={() => { 
-                                  if (!addedButtonsByCategory[imagesName[imageIndex]] || !addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) {
-
-                                  updateTotalPrice(equipment.price); 
-                                  handleAddClicke(imagesName[imageIndex], equipmentIndex); // Appeler la fonction pour mettre à jour l'état du bouton avec la catégorie correspondante
-                                  }
-                                }} 
-                                className='btn btn-primary buttonPlace rounded shake1' 
-                                style={{ marginLeft: 'auto', marginRight: '5px', backgroundColor: (addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'green' : 'blue' }}>
-                                {(addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'Added' : 'Add'} 
-                              </button>                        </li>
+                                <button
+                                  onClick={() => {
+                                    const isAdding = !addedButtonsByCategory[imagesName[imageIndex]] || !addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex];
+                                    updateTotalPrice(equipment.price, isAdding, imagesName[imageIndex], equipmentIndex);
+                                  }}
+                                  className='btn btn-primary buttonPlace rounded shake1'
+                                  style={{ marginLeft: 'auto', marginRight: '5px', backgroundColor: (addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'green' : 'blue' }}>
+                                  {(addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'Added' : 'Add'}
+                                </button>                        </li>
                             ))}
                           </ul>
                         </div>
@@ -548,61 +560,60 @@ function LegendBuild() {
         </section>
       )}
       {accessoriesVisible && (
-   <section className='sellerie backGround'>
-   <div className='bg-dark m-0 shadow-blue'>
-     <h1 className='text-white p-5'>05.Accessoires</h1>
-   </div>
-   {/* Autres éléments de votre composant */}
-   <div className='container'>
-     <div className='row d-flex justify-content-between m-5'>
-       {/* Utiliser map() pour afficher chaque catégorie */}
-       {Object.keys(accessoriesByCategory).map((category, index) => (
-         <div key={index} className=' m-1 shadowCard' style={{ padding: '10px' }}>
-           <div className='row d-flex justify-content-between align-items-center'>
-             <div>
-               <h1 onClick={() => handleCategoryClick(category)}>
-                 {category} {selectedCategory === category ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
-               </h1>
-             </div>
-             {/* Utiliser selectedCategory pour afficher les détails de la catégorie sélectionnée */}
-             {selectedCategory === category && (
-               <div className='d-flex justify-content-center align-items-center '>
-                 <ul style={{ listStyleType: 'none', padding: 0 }}>
-                   {/* Utiliser map() pour afficher chaque accessoire de la catégorie sélectionnée */}
-                   {accessoriesByCategory[category].map((accessory, accessoryIndex) => (
-                     <li className='shadowCard' key={accessoryIndex} style={{ textAlign: 'center', marginBottom: '10px', borderRadius: '10px', border: '1px solid black', padding: '10px', display: 'flex', alignItems: 'center' }}>
-                       {/* Afficher les détails de l'accessoire */}
-                       <img className='shadowCard ' style={{ width: '200px', height: 'auto', border: '2px solid black', padding: '10px' }} src={accessory.src} alt={accessory.name} />
-                       <div className="d-flex flex-column align-items-start justify-content-center mx-3">
-                         <p>{accessory.name}</p>
-                         <div className="price-container">
-                           <p className="price">Price: <b>{accessory.price}€</b></p>
-                         </div>
-                       </div>
-                       <button 
-                         onClick={() => { 
-                          if (!addedButtonsByCategory[category] || !addedButtonsByCategory[category][accessoryIndex]) {
-
-                           updateTotalPriceAccessories(accessory.price); 
-                           handleAddClick(accessoryIndex); // Appeler la fonction pour mettre à jour l'état du bouton
-                          }
-                         }} 
-                         className='btn btn-primary buttonPlace rounded shake1' 
-                         style={{ marginLeft: 'auto', marginRight: '5px', backgroundColor: addedButtons[accessoryIndex] ? 'green' : 'blue' }}>
-                         {addedButtons[accessoryIndex] ? 'Added' : 'Add'} 
-                       </button>
-                     </li>
-                   ))}
-                 </ul>
-               </div>
-             )}
-           </div>
-         </div>
-       ))}
-     </div>
-   </div>
-   {/* Autres éléments de votre composant */}
- </section>
+        <section className='sellerie backGround'>
+          <div className='bg-dark m-0 shadow-blue'>
+            <h1 className='text-white p-5'>05.Accessoires</h1>
+          </div>
+          {/* Autres éléments de votre composant */}
+          <div className='container'>
+            <div className='row d-flex justify-content-between m-5'>
+              {/* Utiliser map() pour afficher chaque catégorie */}
+              {Object.keys(accessoriesByCategory).map((category, index) => (
+                <div key={index} className=' m-1 shadowCard' style={{ padding: '10px' }}>
+                  <div className='row d-flex justify-content-between align-items-center'>
+                    <div>
+                      <h1 onClick={() => handleCategoryClick(category)}>
+                        {category} {selectedCategory === category ? <MdOutlineKeyboardArrowUp /> : <MdOutlineKeyboardArrowDown />}
+                      </h1>
+                    </div>
+                    {/* Utiliser selectedCategory pour afficher les détails de la catégorie sélectionnée */}
+                    {selectedCategory === category && (
+                      <div className='d-flex justify-content-center align-items-center '>
+                        <ul style={{ listStyleType: 'none', padding: 0 }}>
+                          {/* Utiliser map() pour afficher chaque accessoire de la catégorie sélectionnée */}
+                          {accessoriesByCategory[category].map((accessory, accessoryIndex) => (
+                            <li className='shadowCard' key={accessoryIndex} style={{ textAlign: 'center', marginBottom: '10px', borderRadius: '10px', border: '1px solid black', padding: '10px', display: 'flex', alignItems: 'center' }}>
+                              {/* Afficher les détails de l'accessoire */}
+                              <img className='shadowCard ' style={{ width: '200px', height: 'auto', border: '2px solid black', padding: '10px' }} src={accessory.src} alt={accessory.name} />
+                              <div className="d-flex flex-column align-items-start justify-content-center mx-3">
+                                <p>{accessory.name}</p>
+                                <div className="price-container">
+                                  <p className="price">Price: <b>{accessory.price}€</b></p>
+                                </div>
+                              </div>
+                              <button
+                                // Gestionnaire de clic du bouton pour les accessoires
+                                onClick={() => {
+                                  const isAdding = !addedButtons[accessoryIndex];
+                                  updateTotalPriceAccessories(accessory.price, isAdding);
+                                  handleAddClick(accessoryIndex); // Appeler la fonction pour mettre à jour l'état du bouton
+                                }}
+                                className='btn btn-primary buttonPlace rounded shake1'
+                                style={{ marginLeft: 'auto', marginRight: '5px', backgroundColor: addedButtons[accessoryIndex] ? 'green' : 'blue' }}>
+                                {addedButtons[accessoryIndex] ? 'Added' : 'Add'}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Autres éléments de votre composant */}
+        </section>
       )}
 
     </>

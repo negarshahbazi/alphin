@@ -219,16 +219,37 @@ function PureBuild() {
   };
 
   // Fonction pour mettre à jour le prix total des équipements
-  const updateTotalPrice = (price) => {
-    setTotalEquipmentPrice(totalEquipmentPrice + price);
-
+  const updateTotalPrice = (price, isAdding, category, index) => {
+    setTotalEquipmentPrice(prevTotalPrice => {
+      if (isAdding) {
+        setAddedButtonsByCategory(prevState => ({
+          ...prevState,
+          [category]: {
+            ...(prevState[category] || {}),
+            [index]: true
+          }
+        }));
+        return prevTotalPrice + price; // Ajoute le prix au prix total
+      } else {
+        setAddedButtonsByCategory(prevState => {
+          const newState = { ...prevState };
+          delete newState[category][index];
+          return newState;
+        });
+        return prevTotalPrice - price; // Soustrait le prix du prix total
+      }
+    });
   };
-  // Fonction pour mettre à jour le prix total des accessories
-  const updateTotalPriceAccessories = (price) => {
-    setTotalAccessoriesPrice(totalAccessoriesPrice + price);
-
+  // Fonction pour mettre à jour le prix total des accessoires
+  const updateTotalPriceAccessories = (price, isAdding) => {
+    setTotalAccessoriesPrice(prevTotalPrice => {
+      if (isAdding) {
+        return prevTotalPrice + price; // Ajoute le prix au prix total
+      } else {
+        return prevTotalPrice - price; // Soustrait le prix du prix total
+      }
+    });
   };
-
 
 
 
@@ -507,13 +528,10 @@ function PureBuild() {
                                   </div>
                                 </div>
                                 <button
-                                  onClick={() => {
-                                    if (!addedButtonsByCategory[imagesName[imageIndex]] || !addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) {
-
-                                      updateTotalPrice(equipment.price);
-                                      handleAddClicke(imagesName[imageIndex], equipmentIndex); // Appeler la fonction pour mettre à jour l'état du bouton avec la catégorie correspondante
-                                    }
-                                  }}
+                                     onClick={() => {
+                                      const isAdding = !addedButtonsByCategory[imagesName[imageIndex]] || !addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex];
+                                      updateTotalPrice(equipment.price, isAdding, imagesName[imageIndex], equipmentIndex);
+                                    }}
                                   className='btn btn-primary buttonPlace rounded shake1'
                                   style={{ marginLeft: 'auto', marginRight: '5px', backgroundColor: (addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'green' : 'blue' }}>
                                   {(addedButtonsByCategory[imagesName[imageIndex]] && addedButtonsByCategory[imagesName[imageIndex]][equipmentIndex]) ? 'Added' : 'Add'}
@@ -568,8 +586,10 @@ function PureBuild() {
                                 </div>
                               </div>
                               <button
-                                onClick={() => {
-                                  updateTotalPriceAccessories(accessory.price);
+                                 // Gestionnaire de clic du bouton pour les accessoires
+                                 onClick={() => {
+                                  const isAdding = !addedButtons[accessoryIndex];
+                                  updateTotalPriceAccessories(accessory.price, isAdding);
                                   handleAddClick(accessoryIndex); // Appeler la fonction pour mettre à jour l'état du bouton
                                 }}
                                 className='btn btn-primary buttonPlace rounded shake1'
